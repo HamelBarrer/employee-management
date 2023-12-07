@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { Employee, User, UserRole } from '../domain/user';
+import { Employee, LeadToEmployee, User, UserRole } from '../domain/user';
 import { UserRepository } from '../domain/userRepository';
 
 const prisma = new PrismaClient();
@@ -172,6 +172,18 @@ export class UserRepositoryImpl implements UserRepository {
         version: version! + 1,
       },
       where: { userId },
+    });
+  }
+
+  async assignamentLeadToEmployee(
+    employeeId: number,
+    leadId: number,
+  ): Promise<LeadToEmployee> {
+    return await prisma.leadToEmployees.create({
+      data: {
+        employeeId,
+        leadId,
+      },
     });
   }
 }

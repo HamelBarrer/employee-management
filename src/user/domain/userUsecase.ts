@@ -43,4 +43,11 @@ export class UserUseCase {
   async updateEmployee(employeeId: number, employee: Employee) {
     return await this.userRepository.updateEmployee(employeeId, employee);
   }
+
+  async assignamentLeadToEmployee(employeeId: number, leadId: number) {
+    return await this.userRepository.assignamentLeadToEmployee(
+      employeeId,
+      leadId,
+    );
+  }
 }

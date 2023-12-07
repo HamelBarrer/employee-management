@@ -1,4 +1,4 @@
-import { Employee, User, UserRole } from '../domain/user';
+import { Employee, LeadToEmployee, User, UserRole } from '../domain/user';
 import { UserUseCase } from '../domain/userUsecase';
 import { IUserService } from '../interfaces/iuserService';
 
@@ -46,5 +46,12 @@ export class UserService implements IUserService {
     employee: Employee,
   ): Promise<Employee> {
     return await this.userUseCase.updateEmployee(employeeId, employee);
+  }
+
+  async createAssignamentEmployeeToLead(
+    employeeId: number,
+    leadId: number,
+  ): Promise<LeadToEmployee> {
+    return await this.userUseCase.assignamentLeadToEmployee(employeeId, leadId);
   }
 }

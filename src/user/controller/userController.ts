@@ -81,4 +81,18 @@ export class UserController {
       res.status(500).json(error);
     }
   }
+
+  async createAssignamentLeadToEmployee(req: Request, res: Response) {
+    try {
+      const { employeeId, userId } = req.body;
+      const data = await this.userService.createAssignamentEmployeeToLead(
+        employeeId,
+        userId,
+      );
+
+      res.status(200).json(data);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  }
 }

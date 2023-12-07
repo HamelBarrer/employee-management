@@ -35,4 +35,8 @@ router.put('/:userId', (req, res) => {
   userController.updateUser(req, res);
 });
 
+router.post('/assignament', (req, res) => {
+  userController.createAssignamentLeadToEmployee(req, res);
+});
+
 export default router;

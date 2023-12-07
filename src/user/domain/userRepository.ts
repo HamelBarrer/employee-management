@@ -1,4 +1,4 @@
-import { Employee, User, UserRole } from './user';
+import { Employee, LeadToEmployee, User, UserRole } from './user';
 
 export interface UserRepository {
   listUserRoles(): Promise<UserRole[]>;
@@ -11,4 +11,8 @@ export interface UserRepository {
   readEmployee(employeeId: number): Promise<Employee | null>;
   createEmployee(employee: Employee): Promise<Employee>;
   updateEmployee(employeeId: number, employee: Employee): Promise<Employee>;
+  assignamentLeadToEmployee(
+    employeeId: number,
+    leadId: number,
+  ): Promise<LeadToEmployee>;
 }
