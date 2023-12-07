@@ -5,4 +5,8 @@ export interface IAssignamentService {
     employeeId: number,
     leadId: number,
   ): Promise<LeadToEmployee>;
+  getVerificationAssignamentEmployeeToLead(
+    currentLeadToEmployee: LeadToEmployee,
+    leadToEmployee: LeadToEmployee,
+  ): Promise<boolean>;
 }

@@ -16,4 +16,28 @@ export class AssignamentRepositoryImpl implements AssignamentRepository {
       },
     });
   }
+
+  async verificationAssignmamentHability(
+    currentLeadToEmployee: LeadToEmployee,
+    leadToEmployee: LeadToEmployee,
+  ): Promise<boolean> {
+    const { leadId, employeeId } = leadToEmployee;
+
+    const loadEmployess = await prisma.leadToEmployees.findMany({
+      where: {
+        leadId,
+        employeeId,
+      },
+    });
+    if (loadEmployess.length === 0) {
+      return true;
+    }
+
+    for (const employee of loadEmployess) {
+      if (employee.leadId === currentLeadToEmployee.leadId) return true;
+      if (employee.employeeId === currentLeadToEmployee.employeeId) return true;
+    }
+
+    return false;
+  }
 }

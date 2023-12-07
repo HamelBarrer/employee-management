@@ -14,4 +14,14 @@ export class AssignamentService implements IAssignamentService {
       leadId,
     );
   }
+
+  async getVerificationAssignamentEmployeeToLead(
+    currentLeadToEmployee: LeadToEmployee,
+    leadToEmployee: LeadToEmployee,
+  ): Promise<boolean> {
+    return await this.assignamentUseCase.verificationAssignmamentHability(
+      currentLeadToEmployee,
+      leadToEmployee,
+    );
+  }
 }

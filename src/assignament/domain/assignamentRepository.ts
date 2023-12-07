@@ -5,4 +5,8 @@ export interface AssignamentRepository {
     employeeId: number,
     leadId: number,
   ): Promise<LeadToEmployee>;
+  verificationAssignmamentHability(
+    currentLeadToEmployee: LeadToEmployee,
+    leadToEmployee: LeadToEmployee,
+  ): Promise<boolean>;
 }
