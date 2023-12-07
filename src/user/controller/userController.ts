@@ -55,7 +55,10 @@ export class UserController {
 
   async createUser(req: Request, res: Response) {
     try {
-      const data = await this.userService.createUser(req.body);
+      const user = await this.userService.createUser(req.body);
+      const data = await this.userService.createEmployee({
+        userId: user.userId,
+      });
 
       res.status(200).json(data);
     } catch (error) {
@@ -66,7 +69,12 @@ export class UserController {
   async updateUser(req: Request, res: Response) {
     try {
       const userId = Number(req.params.userId);
-      const data = await this.userService.updatedUser(userId, req.body);
+      const employee = await this.userService.getEmployee(userId);
+      const currentEmployee = { ...req.body, ...employee };
+      const data = await this.userService.updatedEmployee(
+        userId,
+        currentEmployee,
+      );
 
       res.status(200).json(data);
     } catch (error) {

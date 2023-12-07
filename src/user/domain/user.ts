@@ -11,3 +11,10 @@ export interface User {
   userRole?: UserRole;
   userRoleId: number;
 }
+
+export interface Employee {
+  employeeId?: number;
+  user?: User;
+  userId: number;
+  version?: number;
+}

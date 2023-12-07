@@ -1,4 +1,4 @@
-import { User, UserRole } from '../domain/user';
+import { Employee, User, UserRole } from '../domain/user';
 import { UserUseCase } from '../domain/userUsecase';
 import { IUserService } from '../interfaces/iuserService';
 
@@ -27,5 +27,24 @@ export class UserService implements IUserService {
 
   async updatedUser(userId: number, user: User): Promise<User> {
     return await this.userUseCase.updateUser(userId, user);
+  }
+
+  async getEmployee(employeeId: number): Promise<Employee | null> {
+    return await this.userUseCase.readEmployee(employeeId);
+  }
+
+  async getEmployees(): Promise<Employee[]> {
+    return await this.userUseCase.listEmployee();
+  }
+
+  async createEmployee(employee: Employee): Promise<Employee> {
+    return await this.userUseCase.createEmployee(employee);
+  }
+
+  async updatedEmployee(
+    employeeId: number,
+    employee: Employee,
+  ): Promise<Employee> {
+    return await this.userUseCase.updateEmployee(employeeId, employee);
   }
 }

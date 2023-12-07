@@ -1,4 +1,4 @@
-import { User, UserRole } from './user';
+import { Employee, User, UserRole } from './user';
 import { UserRepository } from './userRepository';
 
 export class UserUseCase {
@@ -26,5 +26,21 @@ export class UserUseCase {
 
   async updateUser(userId: number, user: User) {
     return await this.userRepository.updateUser(userId, user);
+  }
+
+  async readEmployee(employeeId: number) {
+    return await this.userRepository.readEmployee(employeeId);
+  }
+
+  async listEmployee() {
+    return await this.userRepository.listEmployee();
+  }
+
+  async createEmployee(employee: Employee) {
+    return await this.userRepository.createEmployee(employee);
+  }
+
+  async updateEmployee(employeeId: number, employee: Employee) {
+    return await this.userRepository.updateEmployee(employeeId, employee);
   }
 }

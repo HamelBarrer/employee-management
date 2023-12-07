@@ -1,4 +1,4 @@
-import { User, UserRole } from './user';
+import { Employee, User, UserRole } from './user';
 
 export interface UserRepository {
   listUserRoles(): Promise<UserRole[]>;
@@ -7,4 +7,8 @@ export interface UserRepository {
   listUsers(): Promise<User[]>;
   saveUser(user: User): Promise<User>;
   updateUser(userId: number, user: User): Promise<User>;
+  listEmployee(): Promise<Employee[]>;
+  readEmployee(employeeId: number): Promise<Employee | null>;
+  createEmployee(employee: Employee): Promise<Employee>;
+  updateEmployee(employeeId: number, employee: Employee): Promise<Employee>;
 }
