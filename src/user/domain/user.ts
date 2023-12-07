@@ -18,10 +18,3 @@ export interface Employee {
   userId: number;
   version?: number;
 }
-
-export interface LeadToEmployee {
-  lead?: User;
-  leadId?: number;
-  employee?: Employee;
-  employeeId?: number;
-}

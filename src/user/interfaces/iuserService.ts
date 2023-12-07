@@ -1,4 +1,4 @@
-import { Employee, LeadToEmployee, User, UserRole } from '../domain/user';
+import { Employee, User, UserRole } from '../domain/user';
 
 export interface IUserService {
   getUserRoles(): Promise<UserRole[]>;
@@ -11,8 +11,4 @@ export interface IUserService {
   getEmployees(): Promise<Employee[]>;
   createEmployee(employee: Employee): Promise<Employee>;
   updatedEmployee(employeeId: number, employee: Employee): Promise<Employee>;
-  createAssignamentEmployeeToLead(
-    employeeId: number,
-    leadId: number,
-  ): Promise<LeadToEmployee>;
 }

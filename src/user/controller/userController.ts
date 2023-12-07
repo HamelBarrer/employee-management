@@ -56,11 +56,15 @@ export class UserController {
   async createUser(req: Request, res: Response) {
     try {
       const user = await this.userService.createUser(req.body);
-      const data = await this.userService.createEmployee({
-        userId: user.userId,
-      });
+      if (user.userRoleId === 2) {
+        const data = await this.userService.createEmployee({
+          userId: user.userId,
+        });
+        res.status(201).json(data);
+        return;
+      }
 
-      res.status(200).json(data);
+      res.status(201).json(user);
     } catch (error) {
       res.status(500).json(error);
     }
@@ -74,20 +78,6 @@ export class UserController {
       const data = await this.userService.updatedEmployee(
         userId,
         currentEmployee,
-      );
-
-      res.status(200).json(data);
-    } catch (error) {
-      res.status(500).json(error);
-    }
-  }
-
-  async createAssignamentLeadToEmployee(req: Request, res: Response) {
-    try {
-      const { employeeId, userId } = req.body;
-      const data = await this.userService.createAssignamentEmployeeToLead(
-        employeeId,
-        userId,
       );
 
       res.status(200).json(data);
