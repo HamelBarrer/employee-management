@@ -20,34 +20,33 @@ model UserRoles {
 }
 
 model Users {
-  userId          Int               @id @default(autoincrement())
-  username        String            @unique
-  lastname        String            @unique
-  userRole        UserRoles         @relation(fields: [userRoleId], references: [userRoleId])
-  userRoleId      Int
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
-  Employees       Employees?
-  LeadToEmployees LeadToEmployees[]
+  userId                    Int                         @id @default(autoincrement())
+  username                  String                      @unique
+  lastname                  String                      @unique
+  userRole                  UserRoles                   @relation(fields: [userRoleId], references: [userRoleId])
+  userRoleId                Int
+  createdAt                 DateTime                    @default(now())
+  updatedAt                 DateTime                    @updatedAt
+  Employees                 Employees?
+  AssignamentLeadToEmployee AssignamentLeadToEmployee[]
 }
 
 model Employees {
-  employeeId      Int               @id @default(autoincrement())
-  user            Users             @relation(fields: [userId], references: [userId])
-  userId          Int               @unique
-  version         Int               @default(1)
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
-  LeadToEmployees LeadToEmployees[]
+  employeeId                Int                        @id @default(autoincrement())
+  user                      Users                      @relation(fields: [userId], references: [userId])
+  userId                    Int                        @unique
+  version                   Int                        @default(1)
+  createdAt                 DateTime                   @default(now())
+  updatedAt                 DateTime                   @updatedAt
+  AssignamentLeadToEmployee AssignamentLeadToEmployee?
 }
 
-model LeadToEmployees {
-  lead       Users     @relation(fields: [leadId], references: [userId])
-  leadId     Int
-  employee   Employees @relation(fields: [employeeId], references: [employeeId])
-  employeeId Int
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
-
-  @@id([leadId, employeeId])
+model AssignamentLeadToEmployee {
+  assignamentId Int       @id @default(autoincrement())
+  lead          Users     @relation(fields: [leadId], references: [userId])
+  leadId        Int
+  employee      Employees @relation(fields: [employeeId], references: [employeeId])
+  employeeId    Int       @unique
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 }

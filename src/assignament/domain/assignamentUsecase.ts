@@ -1,4 +1,4 @@
-import { LeadToEmployee } from './assignament';
+import { AssignamentLeadToEmployee } from './assignament';
 import { AssignamentRepository } from './assignamentRepository';
 
 export class AssignamentUseCase {
@@ -12,12 +12,19 @@ export class AssignamentUseCase {
   }
 
   async verificationAssignmamentHability(
-    currentLeadToEmployee: LeadToEmployee,
-    leadToEmployee: LeadToEmployee,
+    currentLeadToEmployee: AssignamentLeadToEmployee,
+    leadToEmployee: AssignamentLeadToEmployee,
   ) {
     return await this.assignamentRepository.verificationAssignmamentHability(
       currentLeadToEmployee,
       leadToEmployee,
+    );
+  }
+
+  async updatedLoadToEmployee(employeeId: number, leadId: number) {
+    return await this.assignamentRepository.updatedLoadToEmployee(
+      employeeId,
+      leadId,
     );
   }
 }

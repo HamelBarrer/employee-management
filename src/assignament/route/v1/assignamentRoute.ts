@@ -25,4 +25,8 @@ router.post('/', (req, res) => {
   assignamentController.createAssignamentLeadToEmployee(req, res);
 });
 
+router.put('/', (req, res) => {
+  assignamentController.updateAssignamentLeadToEmployee(req, res);
+});
+
 export default router;

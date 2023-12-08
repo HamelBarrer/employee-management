@@ -106,7 +106,7 @@ export class UserRepositoryImpl implements UserRepository {
   }
 
   async readEmployee(employeeId: number): Promise<Employee | null> {
-    return await prisma.employees.findUnique({ where: { userId: employeeId } });
+    return await prisma.employees.findUnique({ where: { employeeId } });
   }
 
   async listEmployee(): Promise<Employee[]> {
@@ -164,14 +164,17 @@ export class UserRepositoryImpl implements UserRepository {
     });
   }
 
-  async updateEmployee(userId: number, employee: Employee): Promise<Employee> {
+  async updateEmployee(
+    employeeId: number,
+    employee: Employee,
+  ): Promise<Employee> {
     const { version } = employee;
 
     return await prisma.employees.update({
       data: {
         version: version! + 1,
       },
-      where: { userId },
+      where: { employeeId },
     });
   }
 }

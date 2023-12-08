@@ -1,12 +1,16 @@
-import { LeadToEmployee } from '../domain/assignament';
+import { AssignamentLeadToEmployee } from '../domain/assignament';
 
 export interface IAssignamentService {
   createAssignamentEmployeeToLead(
     employeeId: number,
     leadId: number,
-  ): Promise<LeadToEmployee>;
+  ): Promise<AssignamentLeadToEmployee>;
   getVerificationAssignamentEmployeeToLead(
-    currentLeadToEmployee: LeadToEmployee,
-    leadToEmployee: LeadToEmployee,
+    currentLeadToEmployee: AssignamentLeadToEmployee,
+    leadToEmployee: AssignamentLeadToEmployee,
   ): Promise<boolean>;
+  updateAssignamentEmployeeToLead(
+    employeeId: number,
+    leadId: number,
+  ): Promise<AssignamentLeadToEmployee>;
 }

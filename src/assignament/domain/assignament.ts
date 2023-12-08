@@ -1,8 +1,9 @@
 import { Employee, User } from '../../user/domain/user';
 
-export interface LeadToEmployee {
+export interface AssignamentLeadToEmployee {
+  assignamentId: number;
   lead?: User;
-  leadId?: number;
+  leadId: number;
   employee?: Employee;
-  employeeId?: number;
+  employeeId: number;
 }

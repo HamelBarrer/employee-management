@@ -1,4 +1,4 @@
-import { LeadToEmployee } from '../domain/assignament';
+import { AssignamentLeadToEmployee } from '../domain/assignament';
 import { AssignamentUseCase } from '../domain/assignamentUsecase';
 import { IAssignamentService } from '../interfaces/iassignamentService';
 
@@ -8,7 +8,7 @@ export class AssignamentService implements IAssignamentService {
   async createAssignamentEmployeeToLead(
     employeeId: number,
     leadId: number,
-  ): Promise<LeadToEmployee> {
+  ): Promise<AssignamentLeadToEmployee> {
     return await this.assignamentUseCase.assignamentLeadToEmployee(
       employeeId,
       leadId,
@@ -16,12 +16,22 @@ export class AssignamentService implements IAssignamentService {
   }
 
   async getVerificationAssignamentEmployeeToLead(
-    currentLeadToEmployee: LeadToEmployee,
-    leadToEmployee: LeadToEmployee,
+    currentLeadToEmployee: AssignamentLeadToEmployee,
+    leadToEmployee: AssignamentLeadToEmployee,
   ): Promise<boolean> {
     return await this.assignamentUseCase.verificationAssignmamentHability(
       currentLeadToEmployee,
       leadToEmployee,
+    );
+  }
+
+  async updateAssignamentEmployeeToLead(
+    employeeId: number,
+    leadId: number,
+  ): Promise<AssignamentLeadToEmployee> {
+    return await this.assignamentUseCase.updatedLoadToEmployee(
+      employeeId,
+      leadId,
     );
   }
 }

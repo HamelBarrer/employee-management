@@ -29,15 +29,14 @@ CREATE TABLE "Employees" (
 );
 
 -- CreateTable
-CREATE TABLE "LeadToEmployees" (
+CREATE TABLE "AssignamentLeadToEmployee" (
+    "assignamentId" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "leadId" INTEGER NOT NULL,
     "employeeId" INTEGER NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
-
-    PRIMARY KEY ("leadId", "employeeId"),
-    CONSTRAINT "LeadToEmployees_leadId_fkey" FOREIGN KEY ("leadId") REFERENCES "Users" ("userId") ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT "LeadToEmployees_employeeId_fkey" FOREIGN KEY ("employeeId") REFERENCES "Employees" ("employeeId") ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT "AssignamentLeadToEmployee_leadId_fkey" FOREIGN KEY ("leadId") REFERENCES "Users" ("userId") ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT "AssignamentLeadToEmployee_employeeId_fkey" FOREIGN KEY ("employeeId") REFERENCES "Employees" ("employeeId") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateIndex
@@ -51,3 +50,6 @@ CREATE UNIQUE INDEX "Users_lastname_key" ON "Users"("lastname");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Employees_userId_key" ON "Employees"("userId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "AssignamentLeadToEmployee_employeeId_key" ON "AssignamentLeadToEmployee"("employeeId");
