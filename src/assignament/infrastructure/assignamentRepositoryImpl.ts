@@ -31,30 +31,6 @@ export class AssignamentRepositoryImpl implements AssignamentRepository {
     }
   }
 
-  async verificationAssignmamentHability(
-    currentLeadToEmployee: AssignamentLeadToEmployee,
-    leadToEmployee: AssignamentLeadToEmployee,
-  ): Promise<boolean> {
-    const { leadId, employeeId } = leadToEmployee;
-
-    const loadEmployess = await prisma.assignamentLeadToEmployee.findMany({
-      where: {
-        leadId,
-        employeeId,
-      },
-    });
-    if (loadEmployess.length === 0) {
-      return true;
-    }
-
-    for (const employee of loadEmployess) {
-      if (employee.leadId === currentLeadToEmployee.leadId) return true;
-      if (employee.employeeId === currentLeadToEmployee.employeeId) return true;
-    }
-
-    return false;
-  }
-
   async updatedLoadToEmployee(
     employeeId: number,
     leadId: number,

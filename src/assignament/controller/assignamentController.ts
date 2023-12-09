@@ -11,6 +11,14 @@ export class AssignamentsController {
   async createAssignamentLeadToEmployee(req: Request, res: Response) {
     try {
       const { employeeId, leadId } = req.body;
+      if (!employeeId) {
+        res.status(404).json({ message: 'Employee Id is required' });
+        return;
+      }
+      if (!leadId) {
+        res.status(404).json({ message: 'Lead Id is required' });
+        return;
+      }
 
       const currentEmployee = await this.userService.getEmployee(employeeId);
       if (!currentEmployee) {
@@ -47,6 +55,14 @@ export class AssignamentsController {
   async updateAssignamentLeadToEmployee(req: Request, res: Response) {
     try {
       const { employeeId, leadId } = req.body;
+      if (!employeeId) {
+        res.status(404).json({ message: 'Employee Id is required' });
+        return;
+      }
+      if (!leadId) {
+        res.status(404).json({ message: 'Lead Id is required' });
+        return;
+      }
 
       const currentEmployee = await this.userService.getEmployee(employeeId);
       if (!currentEmployee) {

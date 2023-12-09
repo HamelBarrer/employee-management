@@ -9,10 +9,12 @@ import { AssignamentService } from '../../service/assignamentService';
 
 const router = Router();
 
+// Perform dependency injection of the user module
 const userRepo = new UserRepositoryImpl();
 const userUseCase = new UserUseCase(userRepo);
 const userService = new UserService(userUseCase);
 
+// Perform dependency injection of the assignament module
 const assignamentRepo = new AssignamentRepositoryImpl();
 const assignamentUseCase = new AssignamentUseCase(assignamentRepo);
 const assignamentService = new AssignamentService(assignamentUseCase);
