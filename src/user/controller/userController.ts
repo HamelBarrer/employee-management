@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { ROLE_USER } from '../../constants/app';
 import { UserService } from '../service/userService';
 
 export class UserController {
@@ -56,7 +57,7 @@ export class UserController {
   async createUser(req: Request, res: Response) {
     try {
       const user = await this.userService.createUser(req.body);
-      if (user.userRoleId === 2) {
+      if (user.userRoleId === ROLE_USER.EMPLOYEE) {
         const data = await this.userService.createEmployee({
           userId: user.userId,
         });

@@ -1,3 +1,4 @@
+import { Employee } from '../../user/domain/user';
 import { AssignamentLeadToEmployee } from '../domain/assignament';
 
 export interface IAssignamentService {
@@ -9,4 +10,5 @@ export interface IAssignamentService {
     employeeId: number,
     leadId: number,
   ): Promise<AssignamentLeadToEmployee>;
+  getEmployees(): Promise<Employee[]>;
 }

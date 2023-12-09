@@ -1,3 +1,4 @@
+import { Employee } from '../../user/domain/user';
 import { AssignamentLeadToEmployee } from '../domain/assignament';
 import { AssignamentUseCase } from '../domain/assignamentUsecase';
 import { IAssignamentService } from '../interfaces/iassignamentService';
@@ -23,5 +24,9 @@ export class AssignamentService implements IAssignamentService {
       employeeId,
       leadId,
     );
+  }
+
+  async getEmployees(): Promise<Employee[]> {
+    return await this.assignamentUseCase.listEmployee();
   }
 }

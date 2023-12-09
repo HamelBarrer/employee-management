@@ -16,4 +16,8 @@ export class AssignamentUseCase {
       leadId,
     );
   }
+
+  async listEmployee() {
+    return await this.assignamentRepository.listEmployee();
+  }
 }

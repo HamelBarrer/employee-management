@@ -31,4 +31,8 @@ router.put('/', (req, res) => {
   assignamentController.updateAssignamentLeadToEmployee(req, res);
 });
 
+router.get('/employees', (req, res) => {
+  assignamentController.getEmployees(req, res);
+});
+
 export default router;

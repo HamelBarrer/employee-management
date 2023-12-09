@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { ROLE_USER } from '../../constants/app';
 import { UserService } from '../../user/service/userService';
 import { AssignamentService } from '../service/assignamentService';
 
@@ -74,7 +75,7 @@ export class AssignamentsController {
         res.status(404).json({ message: 'Lead not found' });
         return;
       }
-      if (currentLead.userRoleId !== 1) {
+      if (currentLead.userRoleId !== ROLE_USER.LEAD) {
         res.status(400).json({
           message: 'To assign a leader you need to have the leader role',
         });
@@ -92,6 +93,21 @@ export class AssignamentsController {
       res.status(200).json(data);
     } catch (error) {
       res.status(500).json(error);
+    }
+  }
+
+  async getEmployees(_: Request, res: Response) {
+    try {
+      const data = await this.assignamentService.getEmployees();
+      if (data.length === 0) {
+        res.status(204).json({ message: '' });
+        return;
+      }
+
+      res.status(200).json(data);
+    } catch (error) {
+      const e = error as Error;
+      res.status(500).json({ error: e.message });
     }
   }
 }

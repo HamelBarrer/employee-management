@@ -1,4 +1,5 @@
 import { Prisma, PrismaClient } from '@prisma/client';
+import { Employee } from '../../user/domain/user';
 import { AssignamentLeadToEmployee } from '../domain/assignament';
 import { AssignamentRepository } from '../domain/assignamentRepository';
 
@@ -43,6 +44,31 @@ export class AssignamentRepositoryImpl implements AssignamentRepository {
       where: {
         leadId,
         employeeId,
+      },
+    });
+  }
+
+  async listEmployee(): Promise<Employee[]> {
+    return await prisma.employees.findMany({
+      select: {
+        employeeId: true,
+        userId: true,
+        version: true,
+        user: {
+          select: {
+            userId: true,
+            username: true,
+            lastname: true,
+            userRoleId: true,
+            userRole: {
+              select: {
+                userRoleId: true,
+                name: true,
+                isActive: true,
+              },
+            },
+          },
+        },
       },
     });
   }
